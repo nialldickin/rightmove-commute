@@ -1,4 +1,4 @@
-# Rightmove Commute Time Extension
+# Rightmove Commute Time - Chrome Extension
 
 ## Getting started
 
