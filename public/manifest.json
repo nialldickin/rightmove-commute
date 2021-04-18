@@ -1,0 +1,34 @@
+{
+  "name": "Rightmove Commute Time",
+  "version": "1.0",
+  "description": "Introduces a new field to rightmove.co.uk that displays travel times by bike, car, public transport or walking.",
+  "manifest_version": 2,
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "https://rightmove.co.uk/*",
+    "https://o1txka9p4j.execute-api.us-east-1.amazonaws.com/dev/*"
+  ],
+  "browser_action": {
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    },
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.rightmove.co.uk/properties/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
