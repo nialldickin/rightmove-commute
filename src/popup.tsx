@@ -21,12 +21,6 @@ const Popup = () => {
     chrome.storage.sync.set({ commutes });
   }
 
-  function onClearClick() {
-    chrome.storage.sync.set({ commutes: [] }, () => {
-      if (!chrome.runtime.lastError) setCommutes([]);
-    });
-  }
-
   function setDestination(index: number) {
     return function (newDestination: string) {
       setCommutes((commutes) =>
@@ -57,7 +51,6 @@ const Popup = () => {
 
   useEffect(() => {
     chrome.storage.sync.get(["commutes"], ({ commutes }) => {
-      console.log(commutes);
       setCommutes(commutes ?? []);
     });
   }, []);
@@ -74,22 +67,16 @@ const Popup = () => {
           />
         ))}
         <button
-          className="bg-blue-300 shadow-sm border-blue-500 border hover:bg-blue-400 text-blue-800 transition rounded-md p-1 focus:outline-none"
+          className="bg-white border border-gray-300 shadow-sm text-blue-500 hover:ring-2 ring-blue-200 transition rounded-md p-1 focus:outline-none"
           onClick={onAddClick}
         >
           Add Destination
         </button>
         <button
-          className="bg-green-300 shadow-sm border-green-500 border hover:bg-green-400 text-green-800 transition rounded-md p-1 focus:outline-none"
+          className="bg-white border border-gray-300 shadow-sm text-green-500 hover:ring-2 ring-green-200 transition rounded-md p-1 focus:outline-none"
           onClick={onSaveClick}
         >
           Save Changes
-        </button>
-        <button
-          className="bg-purple-300 shadow-sm border-purple-500 border hover:bg-purple-400 text-purple-800 transition rounded-md p-1 focus:outline-none"
-          onClick={onClearClick}
-        >
-          Clear All
         </button>
       </div>
     </div>

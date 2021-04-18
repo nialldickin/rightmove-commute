@@ -67,7 +67,7 @@ const Content = () => {
   return (
     <div className="w-full-row">
       {travelTimes.map((tt) => (
-        <div className="w-1/3">
+        <div className="commute-time">
           <span className="font-bold">{tt.destination}: </span>
           <span>{tt.duration}</span>
         </div>
