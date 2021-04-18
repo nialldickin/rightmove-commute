@@ -1,7 +1,7 @@
 # Rightmove Commute Time - Chrome Extension
 
 
-![example usage video](https://j.gifs.com/1WxKvZ.gif)
+![example usage video](https://j.gifs.com/YWo1y2.gif)
 
 
 ## Getting started
