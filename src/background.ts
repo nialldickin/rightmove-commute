@@ -150,10 +150,11 @@ chrome.runtime.onMessage.addListener((message) => {
     calculateAllCommutes();
   }
 });
+
 /* 
- When the frontend (content.tsx) mounts it sends a message 
- requesting a fresh calculation for commute times. This listener
- handles that message and triggers the calculations / response.
+ When the user alters the destinations via the popup, changes are saved to storage.
+ This listener makes sure that after any changes are made, we recalculate our travel
+ times - if necessary
  */
 chrome.storage.onChanged.addListener((changes) => {
   console.log("background: storage changed listener triggered");
