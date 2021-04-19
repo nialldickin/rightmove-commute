@@ -11,13 +11,19 @@ Clone this repo.
 Navigate to the directory and install the dependencies.
 
 ```
-$ npm install
+$ yarn install
 ```
 
 To build the extension, and rebuild it when the files are changed, run
 
 ```
-$ npm start
+$ yarn start
+```
+
+Otherwise, to build a production version, run
+
+```
+$ yarn build
 ```
 
 After the project has been built, a directory named `dist` has been created. You have to add this directory to your Chrome browser:
