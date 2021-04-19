@@ -10,7 +10,6 @@
   },
   "permissions": [
     "storage",
-    "https://rightmove.co.uk/*",
     "https://o1txka9p4j.execute-api.us-east-1.amazonaws.com/dev/*"
   ],
   "browser_action": {
@@ -27,7 +26,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://*.rightmove.co.uk/properties/*"],
+      "matches": ["https://www.rightmove.co.uk/properties/*"],
       "js": ["content.js"]
     }
   ]
