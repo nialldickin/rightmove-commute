@@ -31,9 +31,9 @@ const CommuteEditor = ({
   }
 
   return (
-    <div className="flex flex-row space-x-2 items-center">
+    <div className="flex flex-row space-x-2 items-center dark:text-gray-300">
       <select
-        className="border border-gray-300 p-1 rounded-md focus:outline-none focus:ring-2 ring-blue-200 text-center transition"
+        className="border border-gray-300 dark:border-gray-600 dark:bg-gray-700 p-1 rounded-md focus:outline-none focus:ring-2 ring-blue-200 dark:ring-blue-400 text-center transition"
         value={mode}
         onChange={onModeChanged}
       >
@@ -43,7 +43,7 @@ const CommuteEditor = ({
         <option value="walking">Walking</option>
       </select>
       <input
-        className="border border-gray-300 p-1 rounded-md focus:outline-none focus:ring-2 ring-blue-200 text-center transition"
+        className="border border-gray-300 dark:border-gray-600 dark:bg-gray-700 p-1 rounded-md focus:outline-none focus:ring-2 ring-blue-200 dark:ring-blue-400 text-center transition"
         type="text"
         value={destination}
         placeholder="New Destination"

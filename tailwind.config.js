@@ -4,7 +4,7 @@ module.exports = {
     preserveHtmlElements: false,
     content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/popup.html"],
   },
-  darkMode: false, // or 'media' or 'class'
+  darkMode: "media",
   theme: {
     extend: {},
   },

@@ -56,7 +56,10 @@ const Popup = () => {
   }, []);
 
   return (
-    <div className="min-w-max p-5 bg-gray-100" style={{ fontSize: "14px" }}>
+    <div
+      className="min-w-max p-5 bg-gray-100 dark:bg-gray-800"
+      style={{ fontSize: "14px" }}
+    >
       <div className="flex flex-col space-y-2">
         {commutes.map((commute, idx) => (
           <CommuteEditor
@@ -67,13 +70,13 @@ const Popup = () => {
           />
         ))}
         <button
-          className="bg-white border border-gray-300 shadow-sm text-blue-500 hover:ring-2 ring-blue-200 transition rounded-md p-1 focus:outline-none"
+          className="bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 shadow-sm text-blue-500 dark:text-blue-400 hover:ring-2 ring-blue-200 dark:ring-blue-400 transition rounded-md p-1 focus:outline-none"
           onClick={onAddClick}
         >
           Add Destination
         </button>
         <button
-          className="bg-white border border-gray-300 shadow-sm text-green-500 hover:ring-2 ring-green-200 transition rounded-md p-1 focus:outline-none"
+          className="bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 shadow-sm text-green-500 dark:text-green-400 hover:ring-2 ring-green-200 dark:ring-green-400 transition rounded-md p-1 focus:outline-none"
           onClick={onSaveClick}
         >
           Save Changes
