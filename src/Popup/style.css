@@ -1,0 +1,18 @@
+@layer components {
+  main {
+    @apply min-w-max p-5 bg-gray-100 dark:bg-gray-800 flex flex-col space-y-2;
+    font-size: 14px;
+  }
+
+  .btn {
+    @apply bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 shadow-sm hover:ring-2 transition rounded-md p-1 focus:outline-none;
+  }
+
+  .btn-blue {
+    @apply text-blue-500 dark:text-blue-400 ring-blue-200 dark:ring-blue-400;
+  }
+
+  .btn-green {
+    @apply text-green-500 dark:text-green-400 ring-green-200 dark:ring-green-400;
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "Rightmove Commute Time",
-  "version": "1.0",
+  "version": "1.1.2",
   "description": "Introduces a new field to rightmove.co.uk that displays travel times by bike, car, public transport or walking.",
   "manifest_version": 2,
   "icons": {

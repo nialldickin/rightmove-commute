@@ -1,9 +1,9 @@
-import * as React from "react";
-import { useEffect, useState } from "react";
-import * as ReactDOM from "react-dom";
+import React, { useState, useEffect } from "react";
+import { render } from "react-dom";
 import { Commute, TravelMode } from "rm-types";
-import CommuteEditor from "./CommuteEditor";
+import CommuteItem from "./CommuteItem";
 import "./style.css";
+import "../tailwind.css";
 
 const Popup = () => {
   const [commutes, setCommutes] = useState<Commute[]>([]);
@@ -55,35 +55,32 @@ const Popup = () => {
     });
   }, []);
 
-  return (
-    <div
-      className="min-w-max p-5 bg-gray-100 dark:bg-gray-800"
-      style={{ fontSize: "14px" }}
-    >
-      <div className="flex flex-col space-y-2">
+  function CommuteList() {
+    return (
+      <>
         {commutes.map((commute, idx) => (
-          <CommuteEditor
+          <CommuteItem
             commute={commute}
             setMode={setMode(idx)}
             setDestination={setDestination(idx)}
             deleteCommute={deleteCommute(idx)}
           />
         ))}
-        <button
-          className="bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 shadow-sm text-blue-500 dark:text-blue-400 hover:ring-2 ring-blue-200 dark:ring-blue-400 transition rounded-md p-1 focus:outline-none"
-          onClick={onAddClick}
-        >
-          Add Destination
-        </button>
-        <button
-          className="bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 shadow-sm text-green-500 dark:text-green-400 hover:ring-2 ring-green-200 dark:ring-green-400 transition rounded-md p-1 focus:outline-none"
-          onClick={onSaveClick}
-        >
-          Save Changes
-        </button>
-      </div>
-    </div>
+      </>
+    );
+  }
+
+  return (
+    <main>
+      <CommuteList />
+      <button className="btn btn-blue" onClick={onAddClick}>
+        Add Destination
+      </button>
+      <button className="btn btn-green" onClick={onSaveClick}>
+        Save Changes
+      </button>
+    </main>
   );
 };
 
-ReactDOM.render(<Popup />, document.getElementById("popup"));
+render(<Popup />, document.getElementById("popup"));

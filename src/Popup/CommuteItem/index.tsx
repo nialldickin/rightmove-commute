@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Commute, TravelMode } from "rm-types";
+import "./style.css";
 
 interface Props {
   commute: Commute;
@@ -31,28 +32,21 @@ const CommuteEditor = ({
   }
 
   return (
-    <div className="flex flex-row space-x-2 items-center dark:text-gray-300">
-      <select
-        className="border border-gray-300 dark:border-gray-600 dark:bg-gray-700 p-1 rounded-md focus:outline-none focus:ring-2 ring-blue-200 dark:ring-blue-400 text-center transition"
-        value={mode}
-        onChange={onModeChanged}
-      >
+    <div className="commute-item">
+      <select className="common-input" onChange={onModeChanged} value={mode}>
         <option value="driving">Driving</option>
         <option value="transit">Public Transport</option>
         <option value="bicycling">Cycling</option>
         <option value="walking">Walking</option>
       </select>
       <input
-        className="border border-gray-300 dark:border-gray-600 dark:bg-gray-700 p-1 rounded-md focus:outline-none focus:ring-2 ring-blue-200 dark:ring-blue-400 text-center transition"
+        className="common-input"
+        onChange={onDestinationChanged}
+        placeholder="New Destination"
         type="text"
         value={destination}
-        placeholder="New Destination"
-        onChange={onDestinationChanged}
       ></input>
-      <button
-        className="text-red-500 h-full focus:outline-none transform transition hover:scale-110 m-auto"
-        onClick={deleteCommute}
-      >
+      <button className="delete-btn" onClick={deleteCommute}>
         <DeleteIcon />
       </button>
     </div>

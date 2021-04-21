@@ -1,8 +1,7 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
-import * as ReactDOM from "react-dom";
+import React, { useState, useEffect } from "react";
+import { render } from "react-dom";
 import { TravelTime } from "rm-types";
-import "./content.css";
+import "./style.css";
 
 function saveCoordinates(longitude: number, latitude: number) {
   chrome.storage.sync.set({ latitude, longitude });
@@ -79,4 +78,4 @@ const Content = () => {
 const main = document.querySelector("main");
 const reactRoot = document.createElement("div");
 main?.prepend(reactRoot);
-ReactDOM.render(<Content />, reactRoot);
+render(<Content />, reactRoot);
