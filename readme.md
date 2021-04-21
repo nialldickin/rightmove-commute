@@ -4,6 +4,15 @@
 ![example usage video](https://j.gifs.com/XLmZ5g.gif)
 
 
+
+## Changenotes
+
+- V1.1: darkmode
+  
+  ![](https://user-images.githubusercontent.com/36296712/115534767-05217080-a290-11eb-9b48-91ce8da57b14.png)
+
+
+
 ## Getting started
 
 Clone this repo.
