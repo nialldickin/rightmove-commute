@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { render } from "react-dom";
-import { Commute, TravelMode } from "rm-types";
+import { Commute, TravelMode } from "types";
 import CommuteItem from "./CommuteItem";
 import "./style.css";
 import "../tailwind.css";

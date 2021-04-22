@@ -1,50 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ReactElement } from "react";
 import { render } from "react-dom";
-import { TravelTime } from "rm-types";
+import { TravelTime } from "types";
+import { storeVariable } from "../storage";
+import { getMapImgSrc } from "../utils";
 import "./style.css";
 
-function saveCoordinates(longitude: number, latitude: number) {
-  chrome.storage.sync.set({ origin: { latitude, longitude } });
-}
-
-function extractCoordinate(coordinateType: string, imgSrc: string): number {
-  const regex = new RegExp(`${coordinateType}=([\\d|\\.|-]+)&`);
-  const matches = imgSrc.match(regex);
-  if (matches) {
-    return parseFloat(matches[1]);
-  }
-  console.error(matches, `There was no ${coordinateType} match in imgSrc`);
-  return 0;
-}
-
-function getMapImgSrc() {
-  const imgElement = document.querySelector('[href="#/map"] > img');
-  if (imgElement) {
-    const imgSrc = imgElement.getAttribute("src");
-    if (imgSrc) {
-      const longitude = extractCoordinate("longitude", imgSrc);
-      const latitude = extractCoordinate("latitude", imgSrc);
-      return { latitude, longitude };
-    }
-  } else {
-    console.log("content: failed to locate img on page");
-  }
-  return { latitude: 0, longitude: 0 };
-}
-
 function updatePropertyLocation() {
-  const { latitude, longitude } = getMapImgSrc();
-  saveCoordinates(longitude, latitude);
+  const { latitude, longitude } = getMapImgSrc(document);
+  storeVariable({ origin: { longitude, latitude } });
 }
 
-function registerMessageListener(
+function registerStorageListener(
   setTravelTimes: (arg: TravelTime[]) => void,
   setLoading: (arg: boolean) => void
 ) {
   console.log("content: registering storage listener");
 
   chrome.storage.onChanged.addListener((changes) => {
-    console.log("content: storage changed listener triggered");
+    console.log("content: storage changed listener triggered", changes);
     const { travelTimes, loading } = changes;
 
     if (travelTimes !== undefined) setTravelTimes(travelTimes.newValue);
@@ -52,7 +25,7 @@ function registerMessageListener(
   });
 }
 
-function initTravelTimes(
+function loadTravelTimes(
   setTravelTimes: (arg: TravelTime[]) => void,
   setLoading: (arg: boolean) => void
 ) {
@@ -62,20 +35,21 @@ function initTravelTimes(
   });
 }
 
-const Content = () => {
+const Content = (): ReactElement => {
   const [travelTimes, setTravelTimes] = useState<TravelTime[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
-  useEffect(() => {
-    console.log("content: useEffect fired");
-    initTravelTimes(setTravelTimes, setLoading);
-    registerMessageListener(setTravelTimes, setLoading);
+  function initialise() {
+    loadTravelTimes(setTravelTimes, setLoading);
+    registerStorageListener(setTravelTimes, setLoading);
     updatePropertyLocation();
-  }, []);
+  }
+
+  useEffect(() => initialise(), []);
 
   return (
     <div className="w-full-row">
-      {loading ? <span>loading...</span> : null}
+      {loading ? <span>Calculating commute times...</span> : null}
       {travelTimes.map((tt) => (
         <div className="commute-time">
           <span className="font-bold">{tt.destination}: </span>

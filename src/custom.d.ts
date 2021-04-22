@@ -1,9 +1,4 @@
-declare module "*.svg" {
-  const content: any;
-  export default content;
-}
-
-declare module "rm-types" {
+declare module "types" {
   export const enum TravelMode {
     DRIVING = "driving",
     PUBLIC = "transit",

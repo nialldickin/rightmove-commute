@@ -1,17 +1,12 @@
 # Rightmove Commute Time - Chrome Extension
 
-
 ![example usage video](https://j.gifs.com/XLmZ5g.gif)
-
-
 
 ## Changenotes
 
 - V1.1: darkmode
-  
+
   ![](https://user-images.githubusercontent.com/36296712/115534767-05217080-a290-11eb-9b48-91ce8da57b14.png)
-
-
 
 ## Getting started
 
@@ -42,7 +37,6 @@ After the project has been built, a directory named `dist` has been created. You
 3. Enable _Developer mode_.
 4. Click _Load unpacked_.
 5. Select the `dist` directory.
-
 
 ## Backend
 

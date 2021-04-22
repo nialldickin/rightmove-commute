@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint"],
+  plugins: ["@typescript-eslint", "prettier"],
   extends: [
     "airbnb-typescript",
     "eslint:recommended",
@@ -12,8 +12,16 @@ module.exports = {
     project: "./tsconfig.json",
   },
   rules: {
-    "no-restricted-syntax": 0,
+    "prettier/prettier": "error",
     "no-console": 0,
+    "multiline-comment-style": ["error", "starred-block"],
+    "spaced-comment": ["error", "always"],
   },
-  ignorePatterns: [".eslintrc.js", "tailwind.config.js", "webpack.config.js"],
+  ignorePatterns: [
+    ".eslintrc.js",
+    "tailwind.config.js",
+    "webpack.config.js",
+    "postcss.config.js",
+    "/dist/*",
+  ],
 };
