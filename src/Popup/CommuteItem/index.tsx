@@ -15,7 +15,7 @@ const DeleteIcon = () => (
   </svg>
 );
 
-const CommuteEditor = ({
+const CommuteItem = ({
   commute,
   setMode,
   setDestination,
@@ -45,12 +45,12 @@ const CommuteEditor = ({
         placeholder="New Destination"
         type="text"
         value={destination}
-      ></input>
-      <button className="delete-btn" onClick={deleteCommute}>
+      />
+      <button className="delete-btn" onClick={deleteCommute} type="button">
         <DeleteIcon />
       </button>
     </div>
   );
 };
 
-export default CommuteEditor;
+export default CommuteItem;

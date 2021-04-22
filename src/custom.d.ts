@@ -20,4 +20,9 @@ declare module "rm-types" {
     destination: string;
     duration: string;
   }
+
+  export interface LatLng {
+    latitude: number;
+    longitude: number;
+  }
 }
