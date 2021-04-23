@@ -5,17 +5,21 @@
 # Changelog
 
 ## [1.1.3]
+
 - Darkmode is now toggleable using an in-app icon
 
   ![](https://j.gifs.com/YWo4Yp.gif)
-  
+
 - You can now specify an arrival time for commutes. At present this only affects public transport.
 
   ![](https://j.gifs.com/k89zjx.gif)
 
+- Fixed a bug whereby viewing the gallery or map would remove the commute times from the webpage when the user returned to the main page.
+
 ## [1.1.0]
+
 - Darkmode for those using night-shift
-  
+
   ![](https://user-images.githubusercontent.com/36296712/115534767-05217080-a290-11eb-9b48-91ce8da57b14.png)
 
 ## Getting started
