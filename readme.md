@@ -1,11 +1,22 @@
 # Rightmove Commute Time - Chrome Extension
 
-![example usage video](https://j.gifs.com/XLmZ5g.gif)
+![](https://j.gifs.com/XLmZ5g.gif)
 
-## Changenotes
+# Changelog
 
-- V1.1: darkmode
+## [1.1.3]
+### Changed
+- Darkmode is now toggleable using an in-app icon
 
+  ![](https://j.gifs.com/YWo4Yp.gif)
+- You can now specify an arrival time for commutes. At present this only affects public transport.
+
+  ![](https://j.gifs.com/k89zjx.gif)
+
+## [1.1.0]
+### Added
+- Darkmode for those using night-shift
+  
   ![](https://user-images.githubusercontent.com/36296712/115534767-05217080-a290-11eb-9b48-91ce8da57b14.png)
 
 ## Getting started
