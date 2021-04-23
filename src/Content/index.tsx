@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ReactElement } from "react";
+import React, { useState, useEffect, ReactElement, createElement } from "react";
 import { render } from "react-dom";
 import { TravelTime } from "types";
 import { storeVariable } from "../storage";
@@ -39,13 +39,11 @@ const Content = (): ReactElement => {
   const [travelTimes, setTravelTimes] = useState<TravelTime[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
-  function initialise() {
+  useEffect(() => {
     loadTravelTimes(setTravelTimes, setLoading);
     registerStorageListener(setTravelTimes, setLoading);
     updatePropertyLocation();
-  }
-
-  useEffect(() => initialise(), []);
+  }, []);
 
   return (
     <div className="w-full-row">
@@ -60,7 +58,34 @@ const Content = (): ReactElement => {
   );
 };
 
-const main = document.querySelector("main");
+/*
+ * Create an keep references to our react componenent and rootNode.
+ * This prevents us re-creating the component each time we re-insert,
+ * thus preventing re-registering the storage listeners and the
+ * conflicts this causes
+ */
+const content = createElement(Content);
 const reactRoot = document.createElement("div");
-main?.prepend(reactRoot);
-render(<Content />, reactRoot);
+
+function insertIntoDOM() {
+  const main = document.querySelector("main");
+  main?.prepend(reactRoot);
+  render(content, reactRoot);
+}
+
+insertIntoDOM();
+
+/*
+ * Whilst viewing a property a user can view a gallery or map, triggering
+ * the DOM to change and our rootNode to be removed. To counter this we
+ * register a listener to check for when the user has returned to the std
+ * property view (no suffix after the /) and then re-insert our component
+ */
+window.addEventListener("hashchange", async (e) => {
+  // we have returned from either map or gallery view to main page
+  if (e.newURL.endsWith("#/")) {
+    await new Promise((r) => setTimeout(r, 50));
+    // re-create root node since it will have been removed from DOM by Rightmove's React src
+    insertIntoDOM();
+  }
+});

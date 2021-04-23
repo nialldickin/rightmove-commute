@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { render } from "react-dom";
 import { Commute, TravelMode } from "types";
 import CommuteItem from "./CommuteItem";
@@ -71,14 +71,14 @@ const Popup = () => {
     });
     chrome.storage.sync.get(
       ["hour", "minute", "amPm"],
-      ({ hour, minute, amPm }) => {
-        if (hour) setHour(hour);
-        if (minute) setMinute(minute);
-        if (amPm) setAmPm(amPm);
+      ({ hour: h, minute: m, amPm: a }) => {
+        if (h) setHour(h);
+        if (m) setMinute(m);
+        if (a) setAmPm(a);
       }
     );
-    chrome.storage.sync.get(["darkMode"], ({ darkMode }) => {
-      if (darkMode) setDarkMode(darkMode);
+    chrome.storage.sync.get(["darkMode"], ({ darkMode: dm }) => {
+      if (dm) setDarkMode(dm);
       setLoaded(true);
     });
   }
@@ -90,14 +90,19 @@ const Popup = () => {
   // while we're waiting for our darkmode preferences to sync, don't render any UI - stops flicker
   if (!loaded) return null;
 
-  const timeProps = { setAmPm, amPm, setHour, hour, setMinute, minute };
-
   return (
     <div className={darkMode ? "dark" : ""}>
       <main>
         <div className="settings-row">
           <DarkModeBtn toggleDarkMode={toggleDarkMode} />
-          <ArrivalTime {...timeProps} />
+          <ArrivalTime
+            setAmPm={setAmPm}
+            amPm={amPm}
+            setHour={setHour}
+            hour={hour}
+            setMinute={setMinute}
+            minute={minute}
+          />
         </div>
         <div className="mb-3" />
         {commuteList.map((commute, idx) => (

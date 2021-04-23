@@ -1,4 +1,4 @@
-import { TravelMode, TravelTime } from "types";
+import { LatLng, TravelMode, TravelTime } from "types";
 
 /*
  * Translates our transport mode to the correct verb
@@ -43,7 +43,7 @@ function extractCoordinate(coordinateType: string, imgSrc: string): number {
   return 0;
 }
 
-export function getMapImgSrc(document: Document) {
+export function getMapImgSrc(document: Document): LatLng {
   const imgElement = document.querySelector('[href="#/map"] > img');
   if (imgElement) {
     const imgSrc = imgElement.getAttribute("src");
@@ -58,9 +58,9 @@ export function getMapImgSrc(document: Document) {
   return { latitude: 0, longitude: 0 };
 }
 
-export function composeDate(hour: string, minute: string, amPm: string) {
+export function composeDate(hour: string, minute: string, amPm: string): Date {
   const date = new Date();
-  let formattedHour = parseInt(hour);
+  let formattedHour = parseInt(hour, 10);
   // handle formatting into a 24 hour format
   if (amPm === "AM") {
     if (formattedHour === 12) formattedHour = 0;
@@ -69,6 +69,6 @@ export function composeDate(hour: string, minute: string, amPm: string) {
     if (formattedHour !== 12) formattedHour += 12;
   }
   date.setHours(formattedHour);
-  date.setMinutes(parseInt(minute));
+  date.setMinutes(parseInt(minute, 10));
   return date;
 }
