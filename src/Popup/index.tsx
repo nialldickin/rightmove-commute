@@ -1,12 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { render } from "react-dom";
 import { Commute, TravelMode } from "types";
 import CommuteItem from "./CommuteItem";
 import "./style.css";
 import "../tailwind.css";
+import DarkModeBtn from "./DarkMode";
+import { storeVariable } from "../storage";
+import ArrivalTime from "./ArrivalTime";
 
 const Popup = () => {
   const [commuteList, setCommutes] = useState<Commute[]>([]);
+  const [darkMode, setDarkMode] = useState<boolean>(false);
+  const [loaded, setLoaded] = useState<boolean>(false);
+  const [hour, setHour] = useState<string>("9");
+  const [minute, setMinute] = useState<string>("0");
+  const [amPm, setAmPm] = useState<string>("am");
+
+  const toggleDarkMode = () => {
+    setDarkMode((d) => {
+      storeVariable({ darkMode: !d });
+      return !d;
+    });
+  };
 
   function onAddClick() {
     setCommutes((state) =>
@@ -19,6 +34,7 @@ const Popup = () => {
 
   function onSaveClick() {
     chrome.storage.sync.set({ commutes: commuteList });
+    chrome.storage.sync.set({ hour, minute, amPm });
   }
 
   function deleteCommute(index: number) {
@@ -49,29 +65,57 @@ const Popup = () => {
     };
   }
 
-  useEffect(() => {
+  function initialise() {
     chrome.storage.sync.get(["commutes"], ({ commutes }) => {
-      setCommutes(commutes ?? []);
+      if (commutes) setCommutes(commutes);
     });
+    chrome.storage.sync.get(
+      ["hour", "minute", "amPm"],
+      ({ hour, minute, amPm }) => {
+        if (hour) setHour(hour);
+        if (minute) setMinute(minute);
+        if (amPm) setAmPm(amPm);
+      }
+    );
+    chrome.storage.sync.get(["darkMode"], ({ darkMode }) => {
+      if (darkMode) setDarkMode(darkMode);
+      setLoaded(true);
+    });
+  }
+
+  useEffect(() => {
+    initialise();
   }, []);
 
+  // while we're waiting for our darkmode preferences to sync, don't render any UI - stops flicker
+  if (!loaded) return null;
+
+  const timeProps = { setAmPm, amPm, setHour, hour, setMinute, minute };
+
   return (
-    <main>
-      {commuteList.map((commute, idx) => (
-        <CommuteItem
-          commute={commute}
-          setMode={setMode(idx)}
-          setDestination={setDestination(idx)}
-          deleteCommute={deleteCommute(idx)}
-        />
-      ))}
-      <button className="btn btn-blue" onClick={onAddClick} type="button">
-        Add Destination
-      </button>
-      <button className="btn btn-green" onClick={onSaveClick} type="button">
-        Save Changes
-      </button>
-    </main>
+    <div className={darkMode ? "dark" : ""}>
+      <main>
+        <div className="settings-row">
+          <DarkModeBtn toggleDarkMode={toggleDarkMode} />
+          <ArrivalTime {...timeProps} />
+        </div>
+        <div className="mb-3" />
+        {commuteList.map((commute, idx) => (
+          <CommuteItem
+            commute={commute}
+            setMode={setMode(idx)}
+            setDestination={setDestination(idx)}
+            deleteCommute={deleteCommute(idx)}
+          />
+        ))}
+        <button className="btn btn-blue" onClick={onAddClick} type="button">
+          Add Destination
+        </button>
+        <button className="btn btn-green" onClick={onSaveClick} type="button">
+          Save Changes
+        </button>
+      </main>
+    </div>
   );
 };
 

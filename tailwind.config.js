@@ -5,7 +5,7 @@ module.exports = {
     preserveHtmlElements: false,
     content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/popup.html"],
   },
-  darkMode: "media",
+  darkMode: "class",
   theme: {
     extend: {},
   },

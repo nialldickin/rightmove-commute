@@ -3,12 +3,12 @@ import { Commute, TravelMode } from "types";
 import DeleteIcon from "./DeleteIcon";
 import "./style.css";
 
-type Props = {
+interface Props {
   commute: Commute;
   setMode: (newMode: TravelMode) => void;
   setDestination: (newDestination: string) => void;
   deleteCommute: () => void;
-};
+}
 
 const CommuteItem = (props: Props): ReactElement => {
   const { commute, setMode, setDestination, deleteCommute } = props;

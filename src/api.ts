@@ -6,7 +6,8 @@ const awsUrl =
 
 export default async function fetchCommuteTime(
   origin: LatLng,
-  commute: Commute
+  commute: Commute,
+  arrivalTime: Date
 ): Promise<TravelTime | null> {
   const { destination, mode } = commute;
   const { latitude, longitude } = origin;
@@ -15,7 +16,13 @@ export default async function fetchCommuteTime(
   url.searchParams.append("latitude", `${latitude}`);
   url.searchParams.append("longitude", `${longitude}`);
   url.searchParams.append("destination", destination);
-  url.searchParams.append("mode", destination);
+  url.searchParams.append("mode", mode);
+  url.searchParams.append(
+    "arrival_time",
+    `${Math.floor(arrivalTime.getTime() / 1000)}`
+  );
+
+  console.log(url.href);
 
   const response = await fetch(encodeURI(url.href));
   if (response.ok) {

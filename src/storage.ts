@@ -1,4 +1,5 @@
 import { Commute, LatLng } from "types";
+import { composeDate } from "./utils";
 
 /*
  * Retrieves the lat/lng coords saved to storage
@@ -31,6 +32,24 @@ export function retrieveSavedCommutes(): Promise<Commute[]> {
         reject(new Error("Failed to retrieve any saved commutes"));
       }
     });
+  });
+}
+
+/*
+ * Retrieves arrival time saved to storage
+ */
+export function retrieveArrivalTime(): Promise<Date> {
+  return new Promise((resolve, reject) => {
+    chrome.storage.sync.get(
+      ["hour", "minute", "amPm"],
+      ({ hour, minute, amPm }) => {
+        if (hour && minute && amPm) {
+          resolve(composeDate(hour, minute, amPm));
+        } else {
+          reject(new Error("Failed to retrieve arrival time from storage"));
+        }
+      }
+    );
   });
 }
 

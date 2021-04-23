@@ -57,3 +57,18 @@ export function getMapImgSrc(document: Document) {
   }
   return { latitude: 0, longitude: 0 };
 }
+
+export function composeDate(hour: string, minute: string, amPm: string) {
+  const date = new Date();
+  let formattedHour = parseInt(hour);
+  // handle formatting into a 24 hour format
+  if (amPm === "AM") {
+    if (formattedHour === 12) formattedHour = 0;
+  }
+  if (amPm === "PM") {
+    if (formattedHour !== 12) formattedHour += 12;
+  }
+  date.setHours(formattedHour);
+  date.setMinutes(parseInt(minute));
+  return date;
+}

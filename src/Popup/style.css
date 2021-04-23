@@ -15,4 +15,8 @@
   .btn-green {
     @apply text-green-500 dark:text-green-400 ring-green-200 dark:ring-green-400;
   }
+
+  .settings-row {
+    @apply flex flex-row items-center justify-between;
+  }
 }
