@@ -1,5 +1,5 @@
 @layer components {
   .dark-mode-btn {
-    @apply place-self-start hover:scale-110 my-auto transition transform focus:outline-none dark:text-yellow-200 text-gray-700;
+    @apply place-self-start mr-5 hover:scale-110 my-auto transition transform focus:outline-none dark:text-yellow-200 text-gray-700;
   }
 }

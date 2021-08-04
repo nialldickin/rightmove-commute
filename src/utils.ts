@@ -44,7 +44,9 @@ function extractCoordinate(coordinateType: string, imgSrc: string): number {
 }
 
 export function getMapImgSrc(document: Document): LatLng {
-  const imgElement = document.querySelector('[href="#/map"] > img');
+  const imgElement = document.querySelector(
+    'img[src^="https://media.rightmove.co.uk/map/"]'
+  );
   if (imgElement) {
     const imgSrc = imgElement.getAttribute("src");
     if (imgSrc) {
