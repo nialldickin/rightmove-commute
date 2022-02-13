@@ -3,7 +3,6 @@
   width: 100%;
   flex-direction: row;
   flex-wrap: wrap;
-  padding-bottom: 0.75rem;
 }
 
 .commute-time {
