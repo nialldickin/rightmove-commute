@@ -68,7 +68,7 @@ const content = createElement(Content);
 const reactRoot = document.createElement("div");
 
 function insertIntoDOM() {
-  const main = document.querySelector("main");
+  const main = document.querySelector("[itemprop='streetAddress']");
   main?.prepend(reactRoot);
   render(content, reactRoot);
 }
