@@ -1,11 +1,11 @@
 {
-  "name": "chrome-extension-react-typescript-boilerplate",
+  "name": "rightmove-commute-time-chrome-extension",
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "export NODE_ENV=production && webpack",
-    "start": "webpack --watch"
+    "start": "webpack --watch",
+    "zip": "zip -vr dist.zip dist/"
   },
   "keywords": [],
   "license": "ISC",
@@ -17,6 +17,7 @@
     "@types/chrome": "0.0.134",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
+    "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "^4.4.1",
     "@typescript-eslint/parser": "^4.22.0",
     "babel-loader": "^8.1.0",
@@ -47,6 +48,7 @@
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-hot-loader": "^4.13.0"
+    "react-hot-loader": "^4.13.0",
+    "styled-components": "^5.3.5"
   }
 }

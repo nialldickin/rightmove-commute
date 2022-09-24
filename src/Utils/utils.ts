@@ -1,4 +1,4 @@
-import { LatLng, TravelMode, TravelTime } from "types";
+import { TravelMode, TravelTime } from "types";
 
 /*
  * Translates our transport mode to the correct verb
@@ -29,11 +29,10 @@ export function composeTravelTime(
   };
 }
 
-export function validApiResponse(item: TravelTime | null): item is TravelTime {
-  return !!item;
-}
-
-function extractCoordinate(coordinateType: string, imgSrc: string): number {
+export function extractCoordinate(
+  coordinateType: string,
+  imgSrc: string
+): number {
   const regex = new RegExp(`${coordinateType}=([\\d|\\.|-]+)&`);
   const matches = imgSrc.match(regex);
   if (matches) {
@@ -41,23 +40,6 @@ function extractCoordinate(coordinateType: string, imgSrc: string): number {
   }
   console.error(matches, `There was no ${coordinateType} match in imgSrc`);
   return 0;
-}
-
-export function getMapImgSrc(document: Document): LatLng {
-  const imgElement = document.querySelector(
-    'img[src^="https://media.rightmove.co.uk/map/"]'
-  );
-  if (imgElement) {
-    const imgSrc = imgElement.getAttribute("src");
-    if (imgSrc) {
-      const longitude = extractCoordinate("longitude", imgSrc);
-      const latitude = extractCoordinate("latitude", imgSrc);
-      return { latitude, longitude };
-    }
-  } else {
-    console.log("content: failed to locate img on page");
-  }
-  return { latitude: 0, longitude: 0 };
 }
 
 export function composeDate(hour: string, minute: string, amPm: string): Date {

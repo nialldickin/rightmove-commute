@@ -5,7 +5,7 @@ import CommuteItem from "./CommuteItem";
 import "./style.css";
 import "../tailwind.css";
 import DarkModeBtn from "./DarkMode";
-import { storeVariable } from "../storage";
+import { storeVariable } from "../Utils/storage";
 import ArrivalTime from "./ArrivalTime";
 
 const Popup = () => {

@@ -1,10 +1,14 @@
 import { LatLng, Commute, TravelTime } from "types";
 import { composeTravelTime } from "./utils";
 
+export function validApiResponse(item: TravelTime | null): item is TravelTime {
+  return !!item;
+}
+
 const awsUrl =
   "https://o1txka9p4j.execute-api.us-east-1.amazonaws.com/dev/travelmatrix/";
 
-export default async function fetchCommuteTime(
+export async function fetchCommuteTime(
   origin: LatLng,
   commute: Commute,
   arrivalTime: Date

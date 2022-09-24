@@ -1,5 +1,16 @@
-import { Commute, LatLng } from "types";
+import { Commute, LatLng, TravelTime } from "types";
 import { composeDate } from "./utils";
+
+/*
+ * Retrieves the travel times saved to storage
+ */
+export function retrieveTravelTimes(): Promise<TravelTime[] | undefined> {
+  return new Promise((resolve) => {
+    chrome.storage.sync.get(["travelTimes"], ({ travelTimes }) => {
+      resolve(travelTimes);
+    });
+  });
+}
 
 /*
  * Retrieves the lat/lng coords saved to storage
