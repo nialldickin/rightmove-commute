@@ -26,7 +26,11 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://www.rightmove.co.uk/properties/**"],
+      "matches": [
+        "https://www.rightmove.co.uk/properties/**",
+        "https://www.zoopla.co.uk/for-sale/details/**",
+        "https://www.zoopla.co.uk/to-rent/details/**"
+      ],
       "js": ["content.js"]
     }
   ]

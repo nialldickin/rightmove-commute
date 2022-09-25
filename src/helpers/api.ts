@@ -1,5 +1,5 @@
 import { LatLng, Commute, TravelTime } from "types";
-import { composeTravelTime } from "./utils";
+import { composeTravelTime } from "./travel";
 
 export function validApiResponse(item: TravelTime | null): item is TravelTime {
   return !!item;

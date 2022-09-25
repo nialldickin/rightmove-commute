@@ -1,5 +1,5 @@
 import { Commute, LatLng, TravelTime } from "types";
-import { composeDate } from "./utils";
+import { composeDate } from "./travel";
 
 /*
  * Retrieves the travel times saved to storage

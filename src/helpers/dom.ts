@@ -1,7 +1,7 @@
 import { createElement, FunctionComponent, ReactElement } from "react";
 import { render } from "react-dom";
 import { LatLng } from "types";
-import { extractCoordinate } from "./utils";
+import { extractCoordinate } from "./travel";
 
 function insertIntoDOM(content: ReactElement, reactRoot: HTMLDivElement) {
   const main = document.querySelector("[itemprop='streetAddress']");

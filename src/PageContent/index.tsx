@@ -1,8 +1,8 @@
 import React, { useState, useEffect, ReactElement } from "react";
 import styled from "styled-components";
 import { TravelTime } from "types";
-import { retrieveTravelTimes, storeVariable } from "../Utils/storage";
-import { setupDOM, getMapImgSrc } from "../Utils/dom";
+import { retrieveTravelTimes, storeVariable } from "../helpers/storage";
+import { setupDOM, getMapImgSrc } from "../helpers/dom";
 
 const CommuteTimeContainer = styled.section`
   display: flex;

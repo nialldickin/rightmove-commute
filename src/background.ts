@@ -1,11 +1,11 @@
 import { TravelTime } from "types";
-import { fetchCommuteTime, validApiResponse } from "./Utils/api";
+import { fetchCommuteTime, validApiResponse } from "./helpers/api";
 import {
   retrieveSavedCommutes,
   retrieveLatLong,
   storeVariable,
   retrieveArrivalTime,
-} from "./Utils/storage";
+} from "./helpers/storage";
 
 /*
  * Retrieves all commutes saved to storage and then triggers an API call

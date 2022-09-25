@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { render } from "react-dom";
 import { Commute, TravelMode } from "types";
-import CommuteItem from "./CommuteItem";
+import CommuteItem from "./components/CommuteItem";
 import "./style.css";
 import "../tailwind.css";
-import DarkModeBtn from "./DarkMode";
-import { storeVariable } from "../Utils/storage";
-import ArrivalTime from "./ArrivalTime";
+import DarkModeBtn from "./components/DarkMode";
+import { storeVariable } from "../helpers/storage";
+import ArrivalTime from "./components/ArrivalTime";
 
 const Popup = () => {
   const [commuteList, setCommutes] = useState<Commute[]>([]);
-  const [darkMode, setDarkMode] = useState<boolean>(false);
-  const [loaded, setLoaded] = useState<boolean>(false);
-  const [hour, setHour] = useState<string>("9");
-  const [minute, setMinute] = useState<string>("0");
-  const [amPm, setAmPm] = useState<string>("am");
+  const [darkMode, setDarkMode] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  const [hour, setHour] = useState("9");
+  const [minute, setMinute] = useState("0");
+  const [amPm, setAmPm] = useState("am");
 
   const toggleDarkMode = () => {
     setDarkMode((d) => {
